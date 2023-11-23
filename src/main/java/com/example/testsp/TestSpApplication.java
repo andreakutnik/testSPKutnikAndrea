@@ -13,13 +13,11 @@ import java.util.List;
 
 @SpringBootApplication
 public class TestSpApplication {
-
-	// Strategy interface
+	
 	public interface NumeStrategy {
 		String getNume(Component component);
 	}
 
-	// Concrete strategy for normal names
 	public class NumeNormalStrategy implements NumeStrategy {
 		@Override
 		public String getNume(Component component) {
@@ -27,20 +25,16 @@ public class TestSpApplication {
 		}
 	}
 
-	// Concrete strategy for uppercase names
 	public class NumeUppercaseStrategy implements NumeStrategy {
 		@Override
 		public String getNume(Component component) {
 			return component.getNume().toUpperCase();
 		}
 	}
-
-	// Interfața pentru componente
 	public interface Component {
 		String getNume();
 	}
 
-	// Clasa pentru obiectele individuale
 	public class Creatura implements Component {
 		private String nume;
 
@@ -54,7 +48,6 @@ public class TestSpApplication {
 		}
 	}
 
-	// Clasa pentru compoziții
 	public class Batalion implements Component {
 		private String nume;
 		private List<Component> componente;
@@ -78,7 +71,6 @@ public class TestSpApplication {
 		}
 	}
 
-	// Proxy pentru Component
 	public class ComponentProxy implements Component {
 		private Component componentReal;
 		private NumeStrategy numeStrategy;
@@ -107,7 +99,6 @@ public class TestSpApplication {
 
 			List<Component> armata = application.creareArmata();
 
-			// Use NumeNormalStrategy by default
 			NumeStrategy numeStrategy = new NumeNormalStrategy();
 
 			for (Component component : armata) {
